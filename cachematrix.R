@@ -1,15 +1,29 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The matrix and itx inverse matrix will be cached as global variables.
+##
+## Global variables: GL_CacheMatrix, GL_CacheInverseMatrix
+##
 
-## Write a short comment describing this function
+
+##  make a cache of the Matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-
+  GL_CacheMatrix <<-x
 }
 
-
-## Write a short comment describing this function
+## Solve the Matrix using cache 
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+  if(!exists("GL_CacheMatrix")){
+    GL_CacheMatrix<<-matrix()
+    GL_CacheInverseMatrix <<- NULL
+  }
+  if(!identical(GL_CacheMatrix , x)){
+    makeCacheMatrix(x)
+    if(det(x)!=0){
+      GL_CacheInverseMatrix <<- solve(x,...)
+    }else{
+      GL_CacheInverseMatrix <<- NULL
+    }
+  }
+  return(GL_CacheInverseMatrix)        
 }
