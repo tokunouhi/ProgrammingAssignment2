@@ -1,4 +1,4 @@
-## The matrix and itx inverse matrix will be cached as global variables.
+## The matrix and its inverse matrix will be cached as global variables.
 ##
 ## Global variables: GL_CacheMatrix, GL_CacheInverseMatrix
 ##
